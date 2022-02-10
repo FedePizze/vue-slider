@@ -24,7 +24,7 @@
             <div class="next" @click="nextSlide()"></div>
             
             <div class="thumb" :class="indice == active ? 'active' : '' " v-for="(items, indice) in items">
-                <img :src="items.url" alt="">
+                <img :src="items.url" :src="items[active].url" alt="">
             </div>
         </div>
    </div>

@@ -33,12 +33,15 @@ const app = new Vue({
                 ],
 
         active: 0,
-        time: '';
+        autoScroll: null,
+        hover: null,
+        
+        
     },
 
     methods: {
 
-        prev() {
+        prevSlide() {
 
             if (this.active == 0) {
                 this.active = this.items.length - 1;
@@ -48,7 +51,7 @@ const app = new Vue({
 
         },
         
-        next() {
+        nextSlide() {
 
             if (this.active == this.items.length - 1) {
                 this.active = 0;
@@ -60,15 +63,45 @@ const app = new Vue({
 
         set() {
 
-            setInterval(function() {
-                //this.active++
-                alert('ciao');
+            this.autoScroll = setInterval(() => {
+
+                this.nextSlide()
+
             }, 1000);
+
+            
+
+        },
+
+        pause() {
+            
+            if (this.hover == true) {
+                
+                clearInterval(this.autoScroll);
+                
+            } else if (this.hover == false) {
+
+                this.autoScroll = setInterval(() => {
+
+                    this.nextSlide()
+    
+                }, 1000);
+            }
+
         }
-        
+    },
+
+    created() {
+
+        this.set()
+    },
+
+    beforeDestroy () {
+        clearInterval(this.autoScroll)
     }
 
 });
+
 
 
 

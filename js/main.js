@@ -95,11 +95,7 @@ const app = new Vue({
 
         this.set()
     },
-
-    beforeDestroy () {
-        clearInterval(this.autoScroll)
-    }
-
+    
 });
 
 
